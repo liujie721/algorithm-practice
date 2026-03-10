@@ -89,3 +89,6 @@ class Solution {
         return ans;
     }
 }
+
+Arrays.asList(nums[i], nums[l], nums[r])：
+Arrays.asList() 是 Java 工具类方法，作用是将多个元素快速转换成一个固定大小的 List（这里是 List<Integer>）。
