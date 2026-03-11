@@ -1,0 +1,51 @@
+给定一个字符串 s ，请你找出其中不含有重复字符的 最长 子串 的长度。
+
+ 
+
+示例 1:
+
+输入: s = "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。注意 "bca" 和 "cab" 也是正确答案。
+示例 2:
+
+输入: s = "bbbbb"
+输出: 1
+解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+示例 3:
+
+输入: s = "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+ 
+
+提示：
+
+0 <= s.length <= 5 * 104
+s 由英文字母、数字、符号和空格组成
+
+import java.util.HashMap;
+import java.util.Map;
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Map<Character, Integer> ans = new HashMap<>();
+        int r = 0, l = 0;
+        int sum = 0;
+        
+        for (r = 0; r < s.length(); r++) {
+            char currChar = s.charAt(r); // 提取当前字符，简化代码
+            // 修正1：判断字符存在 且 该字符的旧索引≥当前左边界（在窗口内重复）
+            if (ans.containsKey(currChar) && ans.get(currChar) >= l) {
+                // 修正2：先get旧值，再+1更新左边界（put需要两个参数，不能直接用）
+                l = ans.get(currChar) + 1;
+            }
+            // 修正3：put方法正确写法（键+值），更新字符的最新索引
+            ans.put(currChar, r);
+            // 计算当前窗口长度，更新最大值
+            sum = Math.max(sum, r - l + 1);
+        }
+        return sum;
+    }
+}
