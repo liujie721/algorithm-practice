@@ -11,7 +11,7 @@ For each test case, print in one line the most commonly occurring word in the in
 Note that words are case insensitive.
 
 Sample Input:
-Can1: "Can a can can a can?  It can!".
+Can1: "Can a can can a can?  It can!"..
 Sample Output:
 can 5
 代码长度限制
